@@ -1,16 +1,10 @@
-//load local object 
-// initiate scheduler
-//ensure all hours are color coded depending on time using moment.js
-// allow user to click on text area to edit then save by clicking on savebtn
-////ensure work schedule refreshes every 20mins
-//and changes color depending on hour
 
-//colour code all hours
 var today = (".$currentDay");
 var eachHour = $(".each-hour");
 var hourNow = moment().hours();
 var taskPlanner = [];
 
+//style all hours depending on current time
 function initiateHours() {
     eachHour.each(function(){
         var row = $(this);
@@ -29,6 +23,7 @@ function initiateHours() {
 
 };
 
+
 function saveTasks() {
     //everytime save is clicked, saved the task + hour into taskPlanner object.
     $(".saveBtn").on("click", function() {
@@ -42,11 +37,12 @@ function saveTasks() {
   });
 }
 
+
+//when user reloads page, load any tasks from local storage
 function loadScheduler() {
     var grabInfo = JSON.parse(localStorage.getItem("taskPlanner"));
-    if (!grabInfo) {
-        taskPlanner = grabInfo;
-    }
+    taskPlanner = grabInfo;
+
     for(var i = 0; i < taskPlanner.length;i++) {
         var loadHour = taskPlanner[i].time;
         var loadTask = taskPlanner[i].task;
@@ -61,8 +57,10 @@ setInterval(function() {
     console.log("time refreshed");
 }, (1000 * 60) * 10)
 
+
+//load document, and run  functions
 $(document).ready(function() {
     initiateHours();
-    saveTasks();
+    loadScheduler();
 });
 
