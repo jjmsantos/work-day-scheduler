@@ -1,8 +1,8 @@
-
-var today = (".$currentDay");
 var eachHour = $(".each-hour");
 var hourNow = moment().hours();
 var taskPlanner = [];
+
+$("#currentDay").text(moment().format("dddd, MMM Do YYYY, h:mm A"));
 
 //style all hours depending on current time
 function initiateHours() {
@@ -56,6 +56,8 @@ setInterval(function() {
     initiateHours();
     console.log("time refreshed");
 }, (1000 * 60) * 10)
+
+
 
 
 //load document, and run  functions
